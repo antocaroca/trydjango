@@ -4,8 +4,7 @@
 
 <form action="." method="POST"> {% csrf_token %}
 
- <!-- this is a built-in method that turns the form we are passing as context into an actual html form rendered out with paragraph tags-->
-<intput type = 'text' name='q' aria-placeholder="your title"/>
+ {{ form.as_p }}
 <input type="submit" value="Save"/>
 </form>
 
