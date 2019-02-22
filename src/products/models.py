@@ -6,6 +6,6 @@ class Product(models.Model):
     description = models.TextField(blank=True, null=True)
     price       = models.DecimalField(decimal_places=2, max_digits=1000)
     summary     = models.TextField(blank=False, null=False) # this field is not required. This field can be empty in the database.
-    featured    = models.BooleanField() # null=True, default=True
+    featured    = models.BooleanField(default=False) # null=True, default=True
 # blank = True/False has to do with how the field is rendered. Null has to do with the database
 # if blank =  False means that the field is required
