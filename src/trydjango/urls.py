@@ -18,7 +18,7 @@ from django.urls import path
 
 # from pages import views. This lines gives the same result as the line below.
 from pages.views import home_view, contact_view, about_view, social_view # here i'm importing 2 views
-from products.views import product_detail_view, product_create_view
+from products.views import product_detail_view, product_create_view, render_initial_data, dynamic_lookup_view, product_delete_view
 
 urlpatterns = [
     path('', home_view, name='home'),
@@ -28,4 +28,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('product/', product_detail_view),
     path('create/', product_create_view),
+    path('product/', product_delete_view),
+    path('products/<int:id>/', dynamic_lookup_view, name='product'),
 ]
