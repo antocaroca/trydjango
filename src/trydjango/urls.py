@@ -21,6 +21,7 @@ from pages.views import home_view, contact_view, about_view, social_view # here 
 
 
 urlpatterns = [
+    path('blog/', include('blog.urls')),
     path('products/', include('products.urls')), # add the import include in line 17 and add this line here
     # after that you can delete the imports that are passed to product/urls.py
     path('', home_view, name='home'),
