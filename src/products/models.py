@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Product(models.Model):
@@ -9,3 +10,6 @@ class Product(models.Model):
     featured    = models.BooleanField(default=False) # null=True, default=True
 # blank = True/False has to do with how the field is rendered. Null has to do with the database
 # if blank =  False means that the field is required
+
+    def get_absolute_url(self):
+        return reverse("product-detail", kwargs={"id":self.id}) # f"/products/{self.id}/
