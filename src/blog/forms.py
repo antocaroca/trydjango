@@ -1,8 +1,8 @@
 from django import forms
 
-from .models import Product
+from .models import Article
 
-class ProductForm(forms.ModelForm):
+class ArticleForm(forms.ModelForm):
     title       = forms.CharField(label='', widget=forms.TextInput(attrs={"placeholder":"your title"}))
     email       = forms.EmailField()
     description = forms.CharField(
@@ -39,7 +39,7 @@ class ProductForm(forms.ModelForm):
             raise forms.ValidationError("This is not a valid email")
         return email
 
-class RawProductForm(forms.Form):
+class RawArticleForm(forms.Form):
     title       = forms.CharField(label='', widget=forms.TextInput(attrs={"placeholder":"your title"}))
     description = forms.CharField(
         required=False,

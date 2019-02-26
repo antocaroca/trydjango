@@ -12,4 +12,4 @@ class Product(models.Model):
 # if blank =  False means that the field is required
 
     def get_absolute_url(self):
-        return reverse("product-detail", kwargs={"id":self.id}) # f"/products/{self.id}/
+        return reverse("products:product-detail", kwargs={"id":self.id}) # f"/products/{self.id}/
