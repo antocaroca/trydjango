@@ -16,31 +16,32 @@ class ArticleForm(forms.ModelForm):
                                 }
                             )
                         )
-    price       = forms.DecimalField(initial=199.99)
+    author_name = forms.CharField(max_length=200, initial="author")
     class Meta:
-        model = Product
+        model = Blog
         fields = [
             'title',
             'description',
-            'price'
+            'author_name'
         ]
 
-    def clean_title(self, *args, **kwargs):
-        title = self.cleaned_data.get("title")
-        if not "a" in title:
-            raise forms.ValidationError("This is not a valid title")
-        if not "e" in title:
-            raise forms.ValidationError("This is not a valid title")
-        return title
+    # def clean_title(self, *args, **kwargs):
+    #     title = self.cleaned_data.get("title")
+    #     if not "a" in title:
+    #         raise forms.ValidationError("This is not a valid title")
+    #     if not "e" in title:
+    #         raise forms.ValidationError("This is not a valid title")
+    #     return title
 
-    def clean_email(self, *args, **kwargs):
-        email = self.cleaned_data.get("email")
-        if not email.endswith("com"):
-            raise forms.ValidationError("This is not a valid email")
-        return email
+    # def clean_email(self, *args, **kwargs):
+    #     email = self.cleaned_data.get("email")
+    #     if not email.endswith("com"):
+    #         raise forms.ValidationError("This is not a valid email")
+    #     return email
 
 class RawArticleForm(forms.Form):
     title       = forms.CharField(label='', widget=forms.TextInput(attrs={"placeholder":"your title"}))
+    author_name       = forms.CharField(label='', widget=forms.TextInput(attrs={"placeholder":"author's name"}))
     description = forms.CharField(
         required=False,
         widget=forms.Textarea(
@@ -52,5 +53,5 @@ class RawArticleForm(forms.Form):
             }
         )
     )
-    price       = forms.DecimalField(initial=199.99)
+    
 
