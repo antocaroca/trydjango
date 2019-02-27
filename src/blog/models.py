@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Article(models.Model):
@@ -6,4 +7,9 @@ class Article(models.Model):
     description = models.TextField(blank=True, null=True)
     author_name = models.CharField(max_length=200, blank=True, null=True)
     
+    def get_absolute_url(self):
+        return reverse("articles:article-detail", kwargs={"id":self.id})
+        # this takes me to the article (url) that i am saving in the database
+
+
 
