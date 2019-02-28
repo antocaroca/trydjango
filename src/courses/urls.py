@@ -3,6 +3,7 @@ from .views import(
     CourseView,
     CourseListView,
     CourseCreateView,
+    CourseUpdateView,
     # my_fbv,
 )
 
@@ -14,4 +15,5 @@ urlpatterns = [
     path('', CourseListView.as_view(), name='courses-list'),
     # path('', my_fbv, name='courses-list'),
     path('<int:id>/', CourseView.as_view(), name='courses-detail'),
+    path('<int:id>/update/', CourseUpdateView.as_view(), name='courses-update'),
 ]
