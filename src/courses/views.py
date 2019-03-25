@@ -6,6 +6,7 @@ from .models import Course
 
 # BASED VIEW CLASS = VIEW
 
+
 class CourseUpdateView(View):
     template_name = "courses/course_update.html"
     def get_object(self):
@@ -13,6 +14,7 @@ class CourseUpdateView(View):
         obj = None
         if id is not None:
             obj = get_object_or_404(Course, id=id)
+            
         return obj
 
     def get(self, request, id=None, *args, **kwargs):
