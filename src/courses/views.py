@@ -3,17 +3,19 @@ from django.views import View
 
 from .forms import CourseModelForm
 from .models import Course
-
 # BASED VIEW CLASS = VIEW
-class CourseDeleteView(View):
-    template_name = "courses/course_delete.html"
+
+class CourseObjectMixin(object):
+    model = Course
     def get_object(self):
         id = self.kwargs.get('id')
         obj = None
         if id is not None:
-            obj = get_object_or_404(Course, id=id)
+            obj =get_object_or_404(self.model, id=id)
         return obj
 
+class CourseDeleteView(CourseObjectMixin, View):
+    template_name = "courses/course_delete.html" 
     def get(self, request, id=None, *args, **kwargs):
         # GET method
         context = {}
@@ -33,7 +35,7 @@ class CourseDeleteView(View):
         return render(request, self.template_name, context)
 
 
-class CourseUpdateView(View): 
+class CourseUpdateView(CourseObjectMixin, View): 
     template_name = "courses/course_update.html"
     def get_object(self):
         id = self.kwargs.get('id')
@@ -93,15 +95,12 @@ class CourseListView(View):
         context = {'object_list': self.get_queryset()}
         return render(request, self.template_name, context)
 
-class CourseView(View):
+class CourseView(CourseObjectMixin, View):
     template_name = "courses/course_detail.html" # DetailView
     def get(self, request, id=None, *args, **kwargs):
         # id=None means the id is no longer required
         # GET method
-        context = {}
-        if id is not None:
-            obj = get_object_or_404(Course, id=id)
-            context['object'] = obj
+        context = {'object':self.get_object()}
         return render(request, self.template_name, context)
 
     # def post(request, *args, **kwargs):
