@@ -5,6 +5,7 @@ from .forms import CourseModelForm
 from .models import Course
 # BASED VIEW CLASS = VIEW
 
+#  A mixin allows us to extend a class-based view with some new code
 class CourseObjectMixin(object):
     model = Course
     def get_object(self):
@@ -66,7 +67,8 @@ class CourseUpdateView(CourseObjectMixin, View):
             context['form'] = form
         return render(request, self.template_name, context) 
         
-
+# When you create sth yo need to accept two methods: GET & POST 
+# we can reduce the amount of code we have by creating our own mixin
 class CourseCreateView(View):
     template_name = "courses/course_create.html" 
     def get(self, request, *args, **kwargs):
@@ -97,6 +99,7 @@ class CourseListView(View):
 
 class CourseView(CourseObjectMixin, View):
     template_name = "courses/course_detail.html" # DetailView
+
     def get(self, request, id=None, *args, **kwargs):
         # id=None means the id is no longer required
         # GET method

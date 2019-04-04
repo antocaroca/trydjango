@@ -2,10 +2,11 @@
 
 {% block content %}
 
-<form action="." method="POST"> {% csrf_token %}
-
+<form class="form-control form-control-sm" type="text" action="." method="POST"> {% csrf_token %}
+<!--action means you can send data to a different url-->
  {{ form.as_p }}
-<input type="submit" value="Save"/>
+
+<input class="btn btn-primary"  type="submit" value="Save"/>
 </form>
 
 {% endblock %}

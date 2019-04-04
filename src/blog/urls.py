@@ -7,7 +7,7 @@ from .views import(
     ArticleUpdateView,
 )
 
-app_name = 'articles'
+app_name = 'blog'
 urlpatterns = [
     path('', ArticleListView.as_view(), name='article-list'), # .as_view turns it into a function based view
     path('create/', ArticleCreateView.as_view(), name='article-create'),

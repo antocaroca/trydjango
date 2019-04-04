@@ -1,7 +1,7 @@
 # from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 
-from .forms import ProductForm, RawProductForm
+from .forms import ProductForm
 
 from .models import Product
 # Create your views here.

@@ -2,6 +2,6 @@
 
 {% block content %}
     <h1>Hello World</h1>
-    {{ request.user }}
+    {{ request.user.is_authenticated }}
     <p>This is the home template</p>
 {% endblock %}
